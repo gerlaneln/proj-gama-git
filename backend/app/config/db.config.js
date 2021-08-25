@@ -1,9 +1,10 @@
 module.exports = {
-    HOST: "localhost",
+    HOST: "127.0.0.1",
     USER: "root",
-    PASSWORD: "654321",
-    DB: "jobsNET",
+    PASSWORD: "root",
+    DB: "jobsnet",
     dialect: "mysql",
+    socketPath: '/var/run/mysqld/mysqld.sock',
     pool: {
       max: 5,
       min: 0,

@@ -2,10 +2,11 @@ const dbConfig = require("../config/db.config.js");
 
 const Sequelize = require("sequelize");
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
+  port: dbConfig.port,
   host: dbConfig.HOST,
   dialect: dbConfig.dialect,
-  operatorsAliases: false,
-
+  operatorsAliases: 0, //ou 0
+  socketPath: dbConfig.socketPath,
   pool: {
     max: dbConfig.pool.max,
     min: dbConfig.pool.min,
@@ -19,6 +20,6 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-db.tutorials = require("./cadastro.model.js")(sequelize, Sequelize);
+db.cadastro = require("./cadastro.model.js")(sequelize, Sequelize);
 
 module.exports = db;

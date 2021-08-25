@@ -12,8 +12,9 @@ exports.create = (req, res) => {
       return;
     }
   
-    // Create a Tutorial
+    // Create a Cadastro
     const cadastro = {
+      cpf: req.body.cpf,
       nome: req.body.nome,
       profissao: req.body.profissao,
       dataNascimento: req.body.dataNascimento,
@@ -29,7 +30,6 @@ exports.create = (req, res) => {
       celular: req.body.celular,
       email: req.body.email,
       rg: req.body.rg,
-      cpf: req.body.cpf,
       veiculo: req.body.veiculo,
       cnh: req.body.cnh
     };
@@ -49,20 +49,8 @@ exports.create = (req, res) => {
 
 // Retrieve all Cadastros from the database.
 exports.findAll = (req, res) => {
-    const cpf = req.query.cpf;
-    var condition = cpf ? { cpf: { [Op.like]: `%${cpf}%` } } : null;
-  
-    Cadastro.findAll({ where: condition })
-      .then(data => {
-        res.send(data);
-      })
-      .catch(err => {
-        res.status(500).send({
-          message:
-            err.message || "Ocorreu um erro na busca dos cadastros."
-        });
-      });
-  };
+
+};
 
 // Find a single Cadastro with an id
 exports.findOne = (req, res) => {
