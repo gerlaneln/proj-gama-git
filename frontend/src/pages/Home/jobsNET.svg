@@ -8,8 +8,10 @@ viewBox="0 0 40000 10000"
  <defs>
   <style type="text/css">
    <![CDATA[
+    .str1 {stroke:white;stroke-width:20;stroke-miterlimit:22.9256}
     .str0 {stroke:#6699FF;stroke-width:1500;stroke-miterlimit:22.9256}
     .fil1 {fill:none}
+    .fil2 {fill:white}
     .fil0 {fill:#6699FF;fill-rule:nonzero}
    ]]>
   </style>
@@ -20,5 +22,7 @@ viewBox="0 0 40000 10000"
   <line class="fil1 str0" x1="39329.08" y1="2028.37" x2="26279.21" y2= "2083.75" />
   <line class="fil1 str0" x1="23487.39" y1="2028.37" x2="3664.53" y2= "2083.75" />
   <path class="fil0" d="M26300.37 8435.36l-3005.66 -4720.17 0 4720.17 -1365.25 0 0 -7027.33 1555.75 0 2794 4519.08 0 -4519.08 1375.83 0 0 7027.33 -1354.67 0zm1883.84 0l0 -7027.33 5164.66 0 0 1227.67 -3735.91 0 0 1502.83 3439.58 0 0 1238.25 -3439.58 0 0 1809.75 3905.25 0 0 1248.83 -5334 0zm7545.91 0l0 -5799.66 -2116.67 0 0 -1227.67 5715 0 0 1227.67 -2127.25 0 0 5799.66 -1471.08 0z"/>
+  <rect class="fil2 str1" x="11095.08" y="1307.86" width="296.33" height="1519.71"/>
+  <rect class="fil2 str1" x="12766.42" y="1293.83" width="296.33" height="1549.78"/>
  </g>
 </svg>

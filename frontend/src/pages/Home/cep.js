@@ -3,14 +3,14 @@
 window.onload = function (){
     
     const clean = () => {
-        document.getElementById('rua').value = "";
+        document.getElementById('logradouro').value = "";
         document.getElementById('bairro').value = "";
         document.getElementById('cidade').value = "";
         document.getElementById('estado').value = "";
     }
 
     const preencherFormulario = endereco => {      
-        document.getElementById('rua').value = endereco.logradouro;
+        document.getElementById('logradouro').value = endereco.logradouro;
         document.getElementById('bairro').value = endereco.bairro;
         document.getElementById('cidade').value = endereco.localidade;
         document.getElementById('estado').value = endereco.uf;
@@ -30,12 +30,14 @@ window.onload = function (){
             const dados = await fetch(url);
             const endereco = await dados.json();
             if(endereco.hasOwnProperty('erro')){
-                document.getElementById('rua').value = 'CEP Inválido';
+                alert('CEP não encontrado.');
+                //document.getElementById('logradouro').value = 'CEP não encontrado';
             }else{
                 preencherFormulario(endereco);
             }
         }else{
-            document.getElementById('rua').value = 'CEP Inválido';
+            alert('CEP inválido.');
+            //document.getElementById('logradouro').value = 'CEP Inválido';
         } 
     }
     

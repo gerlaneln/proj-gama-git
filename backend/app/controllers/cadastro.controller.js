@@ -45,34 +45,20 @@ exports.create = (req, res) => {
             err.message || "Ocorreu um erro na criação do cadastro."
         });
       });
-  };
-
-// Retrieve all Cadastros from the database.
-exports.findAll = (req, res) => {
-
 };
+
 
 // Find a single Cadastro with an id
-exports.findOne = (req, res) => {
-  
-};
-
-// Update a Cadastro by the id in the request
-exports.update = (req, res) => {
-  
-};
-
-// Delete a Cadastro with the specified id in the request
-exports.delete = (req, res) => {
-  
-};
-
-// Delete all Cadastros from the database.
-exports.deleteAll = (req, res) => {
-  
-};
-
-// Find all published Cadastros
-exports.findAllPublished = (req, res) => {
-  
+exports.searchCPF = (req, res) => {
+  Customer.findById(req.params.cpf, (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        return false;
+      } else {
+        res.status(500).send({
+          message: "Erro ao buscar CPF, contate o administrador"
+        });
+      }
+    } else return true;
+  });
 };

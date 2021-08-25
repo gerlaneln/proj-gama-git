@@ -22,25 +22,25 @@ img{
     margin-top: 2em;
 }
 
-h2{
-    margin-left: 20%;
-    margin-right: 20%;
-}
-
 .required:after {
     content:" *"; 
     color: red;
 }
 
 form{
-    display: grid;
-    grid-template-columns: auto auto;
     justify-content: left;
     border-radius: .75em;
     margin-left: 20%;
     margin-right: 20%;
     padding: 20px;
-    background-color: #f2f2f2;
+    background-color: #cabfbf;
+}
+
+fieldset{
+    margin: 1em;
+    border: none;
+    border-radius: .75em;
+    background-color: white;
 }
 
 .grid-item{
@@ -121,4 +121,24 @@ select{
 
 #selecionar:active{
     outline: none;
+}
+
+.buttondiv{
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-left: 20%;
+    margin-right: 20%;
+    padding: 10px;
+}
+
+button{
+    padding: 1em;
+    font-size: 0.8em;
+    border: 2px solid #6699ff;
+    border-radius: .75em;
+}
+
+button:hover{
+    border: 2px solid #003399;
 }
