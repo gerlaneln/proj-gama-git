@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap');
+
+*{
+    font-family: 'Open Sans', sans-serif;
+    /*border: 1px solid red;*/
+}
+
+.header{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    column-gap: 2em;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: white;
+}
+
+img{
+    width: 400px;
+    height: auto;
+    margin-top: 2em;
+}
+
+h2{
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+.required:after {
+    content:" *"; 
+    color: red;
+}
+
+form{
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: left;
+    border-radius: .75em;
+    margin-left: 20%;
+    margin-right: 20%;
+    padding: 20px;
+    background-color: #f2f2f2;
+}
+
+.grid-item{
+    margin-bottom: 1rem;
+}
+
+label{
+    padding: 5px 5px;
+    box-sizing: border-box;
+}
+
+input{
+    border: none;
+    border-bottom: 2px solid #6699ff;
+    height: 1.5rem;
+
+    padding: 5px 5px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+input:focus{
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #003399;
+}
+
+input:active{
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #003399;
+}
+
+input:hover{
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #003399;
+}
+
+.dataInput{
+    width: 15em;
+}
+
+.cepInput{
+    width: 10em;
+}
+
+.estadoInput{
+    width: 6em;
+}
+
+.numeroInput{
+    width: 7em;
+}
+
+select{
+    width: 20em;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+#selecionar{
+    border: none;
+    border-bottom: 2px solid #6699ff;
+    font-size: .9em;
+    padding: .2rem;
+    margin-right: 7px;
+}
+
+#selecionar:hover{
+    border-bottom: 2px solid #003399;
+}
+
+#selecionar:focus{
+    outline: none;
+}
+
+#selecionar:active{
+    outline: none;
+}
