@@ -7,7 +7,7 @@ import axios from 'axios';
 function App() {
   
     const criarCurriculo = async (candidato) => {
-        const be = await axios.post('http://localhost:8080/cadastro', form);
+        const be = await axios.post('http://localhost:8080/register', form);
         if(be.status == 200){
             alert('Currículo cadastrado com sucesso.');
         }else{

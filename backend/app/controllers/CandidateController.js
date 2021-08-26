@@ -1,39 +1,38 @@
-const Candidate = require('../models/Candidate');
+const Candidato = require('../models/Candidato');
 
 module.exports = {
     async register (req, res) {
 
-        const { nome, cargo, dataNascimento, sexo, estadoCivil, CEP, endereco, numero, cidade, bairro, fone1, fone2, celular, contato, email, identidade, cpf, veiculo, habilitacao
+        const { cpf, nome, profissao, dataNascimento, estadoCivil, genero, cep, logradouro, num, bairro, cidade, estado, telFixo, celular, email, rg, veiculo, cnh
         } = req.body;
 
-        const newCandidate = new Candidate();
+        const newCandidato = new Candidato();
 
-        newCandidate.nome = nome;
-        newCandidate.cargo=cargo;
-        newCandidate.dataNascimento = dataNascimento;
-        newCandidate.sexo = sexo;
-        newCandidate.estadoCivil = estadoCivil;
-        newCandidate.CEP = CEP
-        newCandidate.endereco = endereco;
-        newCandidate.numero = numero;
-        newCandidate.cidade = cidade;
-        newCandidate.bairro=bairro;
-        newCandidate.fone1=fone1;
-        newCandidate.fone2=fone2;
-        newCandidate.celular=celular;
-        newCandidate.contato=contato;
-        newCandidate.email=email;
-        newCandidate.identidade=identidade;
-        newCandidate.cpf=cpf;
-        newCandidate.veiculo=veiculo;
-        newCandidate.habilitacao=habilitacao;
+        newCandidato.cpf=cpf;
+        newCandidato.nome = nome;
+        newCandidato.profissao=profissao;
+        newCandidato.dataNascimento = dataNascimento;        
+        newCandidato.estadoCivil = estadoCivil;
+        newCandidato.genero = genero;
+        newCandidato.cep = cep;
+        newCandidato.logradouro = logradouro;
+        newCandidato.num = num;
+        newCandidato.bairro=bairro;
+        newCandidato.cidade = cidade;
+        newCandidato.estado = estado;        
+        newCandidato.telFixo=telFixo;
+        newCandidato.celular=celular;
+        newCandidato.email=email;
+        newCandidato.rg=rg;
+        newCandidato.veiculo=veiculo;
+        newCandidato.cnh=cnh;
 
-        newCandidate.save((err, saveCandidate) => {
+        newCandidato.save((err, saveCandidato) => {
             if (err) {
                 console.log(err);
                 return res.status(500).send('erro no sistema');
             }
-            return res.satauts(200).send(saveCandidate);
+            return res.stauts(200).send(saveCandidato);
         });
     }
 };

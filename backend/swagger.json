@@ -1,11 +1,11 @@
 {
     "openapi": "3.0.0",
-
-    "info":{
+    "info": {
         "title": "API Cadastro de Currículo - jobsNET",
         "description": "API de cadastro de currículo da empresa exemplo jobsNET, criada como projeto final do curso de full stack da Gama Academy",
         "version": "0.0.1"
     },
+    
     "servers": [
         {
             "url": "http://localhost:8080",
@@ -16,16 +16,18 @@
             "description": "Ambiente de produção"
         }
     ],
-
+    
     "paths": {
-        "/cadastro": {
+        "/register": {
             "post": {
                 "summary": "Cadastro de candidato",
                 "description": "Cadastro de currículo, recebe: nome, profissão, data de nascimento, estado civil, gênero, endereço (CEP, logradouro, bairro, cidade, estado), telefone fixo, celular, e-mail, identidade, CPF, veículo, CNH",
-                "tags": ["candidato"],
-                "requestBody":{
+                "tags": [
+                    "candidato"
+                ],
+                "requestBody": {
                     "content": {
-                        "application/json":{
+                        "application/json": {
                             "schema": {
                                 "properties": {
                                     "cpf": {
@@ -82,29 +84,29 @@
                                     "cnh": {
                                         "type": "string"
                                     }
-                                },
-                                "exemples": {
-                                    "Gerlâne":{
-                                        "value":{
-                                            "cpf": "97648507234",
-                                            "nome": "Gerlâne Lima do Nascimento",
-                                            "profissao": "Desenvolvedora Front End",
-                                            "dataNascimento": "07/11/1996",
-                                            "estadoCivil": "Solteira(o)",
-                                            "genero": "Feminino",
-                                            "cep": "69919793",
-                                            "logradouro": "Rua N6",
-                                            "num": "61",
-                                            "bairro": "Conjunto Tucumã",
-                                            "cidade": "Rio Branco",
-                                            "estado": "AC",
-                                            "telFixo": "(68)2102-6979",
-                                            "celular": "(68)99958-0737",
-                                            "email": "gerlima96@gmail.com",
-                                            "rg": "1116482-4",
-                                            "veiculo": "Sim",
-                                            "cnh": "B"
-                                        }
+                                }
+                            },
+                            "examples": {
+                                "Gerlâne Lima": {
+                                    "value": {
+                                        "cpf": "12345678912",
+                                        "nome": "Gerlâne Lima do Nascimento",
+                                        "profissao": "Desenvolvedora Front End",
+                                        "dataNascimento": "07/11/1996",
+                                        "estadoCivil": "Solteira",
+                                        "genero": "Feminino",
+                                        "cep": "69919793",
+                                        "logradouro": "Rua N6",
+                                        "num": "61",
+                                        "bairro": "Conjunto Tucumã",
+                                        "cidade": "Rio Branco",
+                                        "estado": "AC",
+                                        "telFixo": "(68)2102-6979",
+                                        "celular": "(68)99958-0737",
+                                        "email": "gerlima96@gmail.com",
+                                        "rg": "12345698",
+                                        "veiculo": "Sim",
+                                        "cnh": "B"
                                     }
                                 }
                             }
