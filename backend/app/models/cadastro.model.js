@@ -3,7 +3,7 @@
 module.exports = (sequelize, Sequelize) => {
     const Cadastro = sequelize.define("cadastro", {
         cpf: {
-            type: Sequelize.INTEGER,
+            type: Sequelize.STRING,
             allowNull: false,
             unique: true,
             primaryKey: true,

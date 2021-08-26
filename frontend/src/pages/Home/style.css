@@ -33,7 +33,7 @@ form{
     margin-left: 20%;
     margin-right: 20%;
     padding: 20px;
-    background-color: #cabfbf;
+    background-color: #ccddff;
 }
 
 fieldset{
@@ -41,6 +41,12 @@ fieldset{
     border: none;
     border-radius: .75em;
     background-color: white;
+}
+
+.buscaCPF{
+    width: 100%;
+    height: 3em;
+    text-align: center;
 }
 
 .grid-item{
@@ -133,10 +139,12 @@ select{
 }
 
 button{
-    padding: 1em;
-    font-size: 0.8em;
+    padding: 0.8em;
+    width: 9em;
+    font-size: 0.9em;
     border: 2px solid #6699ff;
-    border-radius: .75em;
+    border-radius: .90em;
+    background-color: white;
 }
 
 button:hover{
