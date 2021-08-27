@@ -29,15 +29,10 @@ const App = () => {
 
     const fetchAddress = async () => {
         const address = await axios.get(`https://viacep.com.br/ws/${form.cep}/json/`);
-        document.getElementById('logradouro').value = address.data.logradouro;
-        document.getElementById('bairro').value = address.data.bairro;
-        document.getElementById('cidade').value = address.data.cidade;
-        document.getElementById('estado').value = address.data.estado;
-
-        console.log(document.getElementById('logradouro').value);
-        console.log(document.getElementById('bairro').value);
-        console.log(document.getElementById('cidade').value);
-        console.log(document.getElementById('estado').value);
+        setForm({ ...form, logradouro: address.data.logradouro });
+        setForm({ ...form, bairro: address.data.bairro });
+        setForm({ ...form, cidade: address.data.localidade });
+        setForm({ ...form, estado: address.data.estado});
     }  
 
     const criarCurriculo = async (candidato) => {
@@ -150,7 +145,7 @@ const App = () => {
                     <label className="bairro required">Bairro: </label>
                     <input className="bairroInput required" id="bairro"
                         onChange={(e) => {
-                            setForm({ ...form, bairro: e.target.value });
+                            setForm({ ...form, bairro: e.target.value.toString() });
                         }}
                         value={form.bairro} required />
                 </fieldset>

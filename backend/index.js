@@ -10,7 +10,7 @@ const cors = require('cors');
 
 mongoose.connect('mongodb+srv://admin:6T1M4LHjii2zca46@cluster0.a49dz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
 
-app.use(cors())
+app.use(cors());
 app.use(express.json());
 app.use('/doc', swaggerUI.serve, swaggerUI.setup(swaggerDocs));
 app.use(routes);
