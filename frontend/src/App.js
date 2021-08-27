@@ -29,10 +29,7 @@ const App = () => {
 
     const fetchAddress = async () => {
         const address = await axios.get(`https://viacep.com.br/ws/${form.cep}/json/`);
-        setForm({ ...form, logradouro: address.data.logradouro });
-        setForm({ ...form, bairro: address.data.bairro });
-        setForm({ ...form, cidade: address.data.localidade });
-        setForm({ ...form, estado: address.data.estado});
+        setForm({ ...form, logradouro: address.data.logradouro, bairro: address.data.bairro, cidade: address.data.localidade, estado: address.data.uf});
     }  
 
     const criarCurriculo = async (candidato) => {
@@ -41,6 +38,24 @@ const App = () => {
             const be = await axios.post('http://localhost:8080/register', form);
             if (be.status === 200) {
                 alert('Currículo cadastrado com sucesso.');
+                setForm({cpf: '',
+                nome: '',
+                profissao: '',
+                dataNascimento: '',
+                estadoCivil: '',
+                genero: '',
+                cep: '',
+                logradouro: '',
+                num: '',
+                bairro: '',
+                cidade: '',
+                estado: '',
+                telFixo: '',
+                celular: '',
+                email: '',
+                rg: '',
+                veiculo: '',
+                cnh: ''});
             }
         } catch (error) {
             alert('Falha ao cadastrar currículo. Entre em contato com o administrador');
@@ -70,10 +85,10 @@ const App = () => {
                 </fieldset>
 
                 <fieldset>
-                    <label className="profissao required">Profissão: </label>
+                    <label className="profissao required">Cargo: </label>
                     <input className="profissaoInput" onChange={(e) => {
                         setForm({ ...form, profissao: e.target.value });
-                    }} value={form.profissao} required />
+                    }} value={form.profissao} placeholder="Para qual cargo está se candidatando?" required />
                 </fieldset>
 
                 <fieldset>
@@ -129,7 +144,7 @@ const App = () => {
                         onChange={(e) => {
                             setForm({ ...form, logradouro: e.target.value });
                         }}
-                        value={form.logradouro} required />
+                        value={form.logradouro} placeholder="Ex.: Av. Grande Edifício Martin Apt. 3" required />
                 </fieldset>
 
                 <fieldset>
@@ -204,7 +219,7 @@ const App = () => {
                     <label className="cpf required">CPF: </label>
                     <input className="cpfInput" onChange={(e) => {
                         setForm({ ...form, cpf: e.target.value });
-                    }} value={form.cpf} required />
+                    }} value={form.cpf} type="number" required />
                 </fieldset>
 
                 <h2>Informações Adicionais</h2>
@@ -228,6 +243,7 @@ const App = () => {
                         console.log(e.target.value);
                     }} value={form.cnh} id="selecionar">
                         <option value="selecione">Selecione</option>
+                        <option value="não">Não possuo</option>
                         <option value="a">A</option>
                         <option value="b">B</option>
                         <option value="c">C</option>
