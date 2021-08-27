@@ -1,95 +1,12 @@
 import logo from './jobsNET.svg';
 import './style.css';
+import buscaCEP from './cep.js';
 //import './cep.js';
 import { React, useEffect, useState } from 'react';
 import axios from 'axios';
 
 const App = () => {
-
-    //window.onload = function(){
-
-    const clean = () => {
-        document.getElementById('logradouro').value = '';
-        document.getElementById('bairro').value = '';
-        document.getElementById('cidade').value = '';
-        document.getElementById('estado').value = '';
-    }
-
-    const preencherFormulario = endereco => {
-
-        //setForm({... form, logradouro: endereco.logradouro});           
-        //setForm({... form, bairro: endereco.bairro});           
-        //setForm({... form, cidade: endereco.cidade});           
-        //setForm({... form, estado: endereco.estado});
-
-        document.getElementById('logradouro').value = endereco.logradouro;
-        document.getElementById('bairro').value = endereco.bairro;
-        document.getElementById('cidade').value = endereco.localidade;
-        document.getElementById('estado').value = endereco.uf;
-
-        //preencherEndereço();
-
-    }
-
-    const preencherEndereço = () => {
-        setForm({ ...form, logradouro: document.getElementById('logradouro').value });
-        setForm({ ...form, bairro: document.getElementById('bairro').value });
-        setForm({ ...form, cidade: document.getElementById('cidade').value });
-        setForm({ ...form, estado: document.getElementById('estado').value });
-    }
-
-    const isNum = (num) => /^[0-9]+$/.test(num);
-
-    const cepValido = (cep) => cep.length == 8 && isNum(cep);
-
-    const pesquisarCep = async () => {
-        clean();
-
-        const cep = document.getElementById('cep').value;
-        const url = `http://viacep.com.br/ws/${cep}/json`;
-
-        if (cepValido(cep)) {
-            const dados = await fetch(url);
-            const endereco = await dados.json();
-            if (endereco.hasOwnProperty('erro')) {
-                alert('CEP não encontrado.');
-                //document.getElementById('logradouro').value = 'CEP não encontrado';
-            } else {
-                preencherFormulario(endereco);
-
-                //document.getElementById('logradouro').value = endereco.logradouro;
-                //document.getElementById('bairro').value = endereco.bairro;
-                //document.getElementById('cidade').value = endereco.localidade;
-                //document.getElementById('estado').value = endereco.uf;
-
-                //setForm({... form, logradouro: document.getElementById('logradouro').value});           
-                //setForm({... form, bairro: document.getElementById('bairro').value});           
-                //setForm({... form, cidade: document.getElementById('cidade').value});           
-                //setForm({... form, estado: document.getElementById('estado').value});
-            }
-        } else {
-            alert('CEP inválido.');
-            //document.getElementById('logradouro').value = 'CEP Inválido';
-        }
-    }
-
-    //document.getElementById('cep').addEventListener('onBlur', pesquisarCep);
-    //}
-
-    const criarCurriculo = async (candidato) => {
-        console.log(form);
-        try {
-            const be = await axios.post('http://localhost:8080/register', form);
-            if (be.status === 200) {
-                alert('Currículo cadastrado com sucesso.');
-            }
-        } catch (error) {
-            alert('Falha ao cadastrar currículo. Entre em contato com o administrador');
-            setError(true);
-        }
-
-    }
-
+    
     const [form, setForm] = useState({
         cpf: '',
         nome: '',
@@ -111,7 +28,20 @@ const App = () => {
         cnh: ''
     });
 
-    const [error, setError] = useState(false);
+    const criarCurriculo = async (candidato) => {
+        console.log(form);
+        try {
+            const be = await axios.post('http://localhost:8080/register', form);
+            if (be.status === 200) {
+                alert('Currículo cadastrado com sucesso.');
+            }
+        } catch (error) {
+            alert('Falha ao cadastrar currículo. Entre em contato com o administrador');
+        }
+
+    }
+
+    //tava aqui
 
     useEffect(() => {
         console.log(form);
@@ -124,14 +54,14 @@ const App = () => {
                 <h2>Banco de Currículo</h2>
             </div>
 
-            <form>
+            <div id="form">
                 <h2>Dados Pessoais</h2>
 
                 <fieldset>
                     <label className="name required">Nome Completo: </label>
                     <input className="nameInput" onChange={(e) => {
-                        setForm({ ...form, name: e.target.value });
-                    }} value={form.name} required />
+                        setForm({ ...form, nome: e.target.value });
+                    }} value={form.nome} required />
                 </fieldset>
 
                 <fieldset>
@@ -181,16 +111,18 @@ const App = () => {
 
                 <fieldset>
                     <label className="cep required">CEP:</label>
-                    <input className="cepInput" id="cep" onBlur={pesquisarCep} onChange={(e) => {
+                    <input className="cepInput" id="cep" onBlur={buscaEndereco} onChange={(e) => {
                         setForm({ ...form, cep: e.target.value });
                     }} type="number" placeholder="00000000" value={form.cep} required />
                 </fieldset>
 
                 <fieldset>
                     <label className="logradouro required">Logradouro: </label>
-                    <input className="logradouroInput" id="logradouro" onChange={(e) => {
+                    <input className="logradouroInput" id="logradouro"
+                    onChange={(e) => {
                         setForm({ ...form, logradouro: e.target.value });
-                    }} type="text" value={form.logradouro} required />
+                    }}
+                    value={form.logradouro} required />
                 </fieldset>
 
                 <fieldset>
@@ -304,7 +236,7 @@ const App = () => {
                 <div className="buttondiv">
                     <button onClick={() => criarCurriculo()}>Cadastrar</button>
                 </div>
-            </form>
+            </div>
         </>
     );
 }

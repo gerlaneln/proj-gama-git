@@ -27,7 +27,7 @@ img{
     color: red;
 }
 
-form{
+#form{
     justify-content: left;
     border-radius: .75em;
     margin-left: 20%;

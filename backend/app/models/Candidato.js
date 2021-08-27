@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 
 const CandidateSchema = new mongoose.Schema ({
-    //nome: { type: String, unique:false, required:true},
     cpf: {
         type: String,
         required:true,
