@@ -108,6 +108,28 @@
                                         "veiculo": "Sim",
                                         "cnh": "B"
                                     }
+                                },
+                                "Gelcineide Moreira": {
+                                    "value": {
+                                        "cpf": "12345678955",
+                                        "nome": "Gelcineide Moreira de Lima",
+                                        "profissao": "Professora",
+                                        "dataNascimento": "27/03/1972",
+                                        "estadoCivil": "Solteira",
+                                        "genero": "Feminino",
+                                        "cep": "69960000",
+                                        "logradouro": "Rua Barão do Rio Branco",
+                                        "num": "302",
+                                        "bairro": "Centro",
+                                        "cidade": "Feijó",
+                                        "estado": "AC",
+                                        "telFixo": "(68)3463-2612",
+                                        "celular": "(68)99999-9999",
+                                        "email": "gel.lima@ig.com.br",
+                                        "rg": "12345698",
+                                        "veiculo": "Sim",
+                                        "cnh": "AB"
+                                    }
                                 }
                             }
                         }

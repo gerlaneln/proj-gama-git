@@ -32,7 +32,7 @@ module.exports = {
                 console.log(err);
                 return res.status(500).send('erro no sistema');
             }
-            return res.stauts(200).send(saveCandidato);
+            return res.status(200).send(saveCandidato);
         });
-    }
+    },
 };

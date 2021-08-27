@@ -1,10 +1,10 @@
 const express = require('express');
-const CandidateController =  require('./app/controllers/CandidateController')
+const ControlaCandidato =  require('./app/controllers/ControlaCandidato')
 const routes = new express.Router();
 
-routes.post('/register', CandidateController.register);
+routes.post('/register', ControlaCandidato.register);
 routes.get ('/', (req, res) =>{
-    res.send('FUNCIONANDO')
+    res.send('Tudo certo aqui.')
 });
 
 module.exports = routes;
