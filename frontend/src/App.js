@@ -1,6 +1,6 @@
 import logo from './jobsNET.svg';
 import './style.css';
-import './cep.js';
+//import './cep.js';
 import { React, useEffect, useState } from 'react';
 import axios from 'axios';
 
@@ -26,6 +26,19 @@ const App = () => {
         veiculo: '',
         cnh: ''
     });
+
+    const fetchAddress = async () => {
+        const address = await axios.get(`https://viacep.com.br/ws/${form.cep}/json/`);
+        document.getElementById('logradouro').value = address.data.logradouro;
+        document.getElementById('bairro').value = address.data.bairro;
+        document.getElementById('cidade').value = address.data.cidade;
+        document.getElementById('estado').value = address.data.estado;
+
+        console.log(document.getElementById('logradouro').value);
+        console.log(document.getElementById('bairro').value);
+        console.log(document.getElementById('cidade').value);
+        console.log(document.getElementById('estado').value);
+    }  
 
     const criarCurriculo = async (candidato) => {
         console.log(form);
@@ -108,7 +121,9 @@ const App = () => {
 
                 <fieldset>
                     <label className="cep required">CEP:</label>
-                    <input className="cepInput" id="cep" onChange={(e) => {
+                    <input className="cepInput" id="cep"
+                    onBlur={fetchAddress}
+                    onChange={(e) => {
                         setForm({ ...form, cep: e.target.value });
                     }} type="number" placeholder="00000000" value={form.cep} required />
                 </fieldset>
