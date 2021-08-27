@@ -1,36 +1,73 @@
-class cep extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            data: dataInit
-        }
-    }
-    url = () => {
-        return `http://viacep.com.br/ws/${this.state.cep}/json/`;
-    }
-    handleChange = (event) => {
-        const value = event.target.value;
-        const name = event.target.name;
-        this.setState({ [name]: value }, () => {
-            this.buscarCep();
-        });
+import axios from 'axios';
+
+window.onload = function (){
+    
+
+    function limpa_formulário_cep() {
+        //Limpa valores do formulário de cep.
+        document.getElementById('logradouro').value = ("");
+        document.getElementById('bairro').value = ("");
+        document.getElementById('cidade').value = ("");
+        document.getElementById('estado').value = ("");
     }
 
-    buscarCep() {
-        if (this.state.cep.length < 8) {
-            return;
-        } else {
-            fetch(this.url(), { mode: 'cors' })
-                .then((res) => res.json())
-                .then((data) => {
-                    if (data.hasOwnProperty("erro")) {
-                        this.setState({ data: dataInit });
-                        alert('Cep não existente');
-                    } else {
-                        this.setState({ data });
-                    }
-                })
-                .catch(err => consolelog(err));
+    function meu_callback(conteudo) {
+        if (!("erro" in conteudo)) {
+            //Atualiza os campos com os valores.
+            document.getElementById('logradouro').value = (conteudo.logradouro);
+            document.getElementById('bairro').value = (conteudo.bairro);
+            document.getElementById('cidade').value = (conteudo.localidade);
+            document.getElementById('estado').value = (conteudo.uf);
+            console.log(conteudo.logradouro, conteudo.bairro, conteudo.localidade, conteudo.uf);
+        } //end if.
+        else {
+            //CEP não Encontrado.
+            limpa_formulário_cep();
+            alert("CEP não encontrado.");
         }
     }
+
+    function pesquisacep(valor) {
+
+        //Nova variável "cep" somente com dígitos.
+        var cep = valor.replace(/\D/g, '');
+
+        //Verifica se campo cep possui valor informado.
+        if (cep != "") {
+
+            //Expressão regular para validar o CEP.
+            var validacep = /^[0-9]{8}$/;
+
+            //Valida o formato do CEP.
+            if (validacep.test(cep)) {
+
+                //Preenche os campos com "..." enquanto consulta webservice.
+                document.getElementById('logradouro').value = "...";
+                document.getElementById('bairro').value = "...";
+                document.getElementById('cidade').value = "...";
+                document.getElementById('estado').value = "...";
+
+                //Cria um elemento javascript.
+                var script = document.createElement('script');
+
+                //Sincroniza com o callback.
+                script.src = 'https://viacep.com.br/ws/' + cep + '/json/?callback=meu_callback';
+
+                //Insere script no documento e carrega o conteúdo.
+                document.body.appendChild(script);
+
+            } //end if.
+            else {
+                //cep é inválido.
+                limpa_formulário_cep();
+                alert("Formato de CEP inválido.");
+            }
+        } //end if.
+        else {
+            //cep sem valor, limpa formulário.
+            limpa_formulário_cep();
+        }
+    };
+
+    document.getElementById('cep').addEventListener('focusout', pesquisacep(document.getElementById('cep').value));
 }

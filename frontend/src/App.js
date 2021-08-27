@@ -1,12 +1,11 @@
 import logo from './jobsNET.svg';
 import './style.css';
-import buscaCEP from './cep.js';
-//import './cep.js';
+import './cep.js';
 import { React, useEffect, useState } from 'react';
 import axios from 'axios';
 
 const App = () => {
-    
+
     const [form, setForm] = useState({
         cpf: '',
         nome: '',
@@ -40,8 +39,6 @@ const App = () => {
         }
 
     }
-
-    //tava aqui
 
     useEffect(() => {
         console.log(form);
@@ -111,7 +108,7 @@ const App = () => {
 
                 <fieldset>
                     <label className="cep required">CEP:</label>
-                    <input className="cepInput" id="cep" onBlur={buscaEndereco} onChange={(e) => {
+                    <input className="cepInput" id="cep" onChange={(e) => {
                         setForm({ ...form, cep: e.target.value });
                     }} type="number" placeholder="00000000" value={form.cep} required />
                 </fieldset>
@@ -119,10 +116,10 @@ const App = () => {
                 <fieldset>
                     <label className="logradouro required">Logradouro: </label>
                     <input className="logradouroInput" id="logradouro"
-                    onChange={(e) => {
-                        setForm({ ...form, logradouro: e.target.value });
-                    }}
-                    value={form.logradouro} required />
+                        onChange={(e) => {
+                            setForm({ ...form, logradouro: e.target.value });
+                        }}
+                        value={form.logradouro} required />
                 </fieldset>
 
                 <fieldset>
