@@ -2,14 +2,13 @@
   "name": "proj-gama-git",
   "version": "1.0.0",
   "description": "Banco de Currículos criado para o projeto final do curso de Full Stack da Gama Academy, oferecido pela Ambev Tech",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
     "express",
-    "sequelize",
-    "mysql",
+    "mongoose",
     "rest",
     "api",
     "html",
@@ -23,9 +22,6 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "mongoose": "^6.0.1",
-    "mysql": "^2.18.1",
-    "mysql2": "^2.3.0",
-    "sequelize": "^6.6.5",
     "swagger-ui-express": "^4.1.6"
   },
   "devDependencies": {

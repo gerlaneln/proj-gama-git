@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sacramento&display=swap');
 
 *{
     font-family: 'Open Sans', sans-serif;
@@ -8,7 +9,7 @@
     display: flex;
     flex-direction: column;
     position: relative;
-    column-gap: 2em;
+    column-gap: 1em;
     align-items: center;
     justify-content: center;
     text-align: center;
@@ -62,9 +63,10 @@ input{
     border-bottom: 2px solid #6699ff;
     height: 1.5rem;
 
+    width: 95%;
     padding: 5px 5px;
     margin: 8px 0;
-    box-sizing: border-box;
+    /*box-sizing: border-box;*/
 }
 
 input:focus{
@@ -86,7 +88,7 @@ input:hover{
 }
 
 .dataInput{
-    width: 15em;
+    width: 10em;
 }
 
 .cepInput{
@@ -101,8 +103,16 @@ input:hover{
     width: 7em;
 }
 
+.telFixoInp{
+    width: 15em;
+}
+
+.celularInp{
+    width: 15em;
+}
+
 select{
-    width: 20em;
+    width: 10em;
     padding: 12px 20px;
     margin: 8px 0;
 }
@@ -147,4 +157,31 @@ button{
 
 button:hover{
     border: 2px solid #003399;
+}
+
+footer{
+    margin-top: 2em;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    padding: 1em;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: #6699ff;
+}
+
+a{
+    font-family: 'Sacramento', cursive;
+    color: black;
+    font-size: xx-large;
+    text-decoration: none;
+}
+
+a:hover{
+    color: white;
+}
+
+#sign{
+    font-family: 'Sacramento', cursive;
 }

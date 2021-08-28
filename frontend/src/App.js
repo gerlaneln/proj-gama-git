@@ -27,13 +27,51 @@ const App = () => {
         cnh: ''
     });
 
+    const isNum = (num) => /^[0-9]+$/.test(num);
+    const cepValido = (cep) => cep.length == 8 && isNum(cep);
+
     const fetchAddress = async () => {
-        const address = await axios.get(`https://viacep.com.br/ws/${form.cep}/json/`);
-        setForm({ ...form, logradouro: address.data.logradouro, bairro: address.data.bairro, cidade: address.data.localidade, estado: address.data.uf});
-    }  
+        
+        if(cepValido(form.cep)){
+            const address = await axios.get(`https://viacep.com.br/ws/${form.cep}/json/`);
+            if('erro' in address.data){
+                setForm({...form, cep: ''});
+                alert('CEP não encontrado');
+                setForm({...form, cep: ''});
+            }else{
+                setForm({ ...form, logradouro: address.data.logradouro, bairro: address.data.bairro, cidade: address.data.localidade, estado: address.data.uf});
+            }
+        }else{
+            setForm({...form, cep: ''});
+            alert('CEP inválido');
+            setForm({...form, cep: ''});
+        }        
+    }
+    
+    const buscaCPF = async (cpf) => {
+        if(isNum(cpf)){
+            if (cpf.lenght < 11){
+                const back = await axios.get('http://localhost:8080/find', { params: { cpf }});
+                if(back){
+                    setForm({...form, cpf: ''});
+                    alert('CPF já cadastrado');
+                    setForm({...form, cpf: ''});
+                }
+            }else{
+                setForm({...form, cpf: ''});
+                alert('CPF inválido');
+            }
+        }else{
+            setForm({...form, cpf: ''});
+            alert('CPF possui caracteres inválidos');
+            setForm({...form, cpf: ''});
+        }
+        
+        
+    }
 
     const criarCurriculo = async (candidato) => {
-        console.log(form);
+        //console.log(form);
         try {
             const be = await axios.post('http://localhost:8080/register', form);
             if (be.status === 200) {
@@ -72,6 +110,7 @@ const App = () => {
             <div className="header">
                 <img src={logo} alt="jobsNET" />
                 <h2>Banco de Currículo</h2>
+                <p>Cadastre seu currículo. Venha fazer parte do nosso time!</p>
             </div>
 
             <div id="form">
@@ -140,7 +179,7 @@ const App = () => {
 
                 <fieldset>
                     <label className="logradouro required">Logradouro: </label>
-                    <input className="logradouroInput" id="logradouro"
+                    <input className="logradouroInput"
                         onChange={(e) => {
                             setForm({ ...form, logradouro: e.target.value });
                         }}
@@ -153,12 +192,12 @@ const App = () => {
                         onChange={(e) => {
                             setForm({ ...form, num: e.target.value });
                         }}
-                        size="6" value={form.num} required />
+                        size="6" type="number" value={form.num} required />
                 </fieldset>
 
                 <fieldset>
                     <label className="bairro required">Bairro: </label>
-                    <input className="bairroInput required" id="bairro"
+                    <input className="bairroInput required"
                         onChange={(e) => {
                             setForm({ ...form, bairro: e.target.value.toString() });
                         }}
@@ -167,7 +206,7 @@ const App = () => {
 
                 <fieldset>
                     <label className="cidade required">Cidade: </label>
-                    <input className="cidadeInput" id="cidade"
+                    <input className="cidadeInput"
                         onChange={(e) => {
                             setForm({ ...form, cidade: e.target.value });
                         }}
@@ -189,14 +228,15 @@ const App = () => {
                     <label className="telFixo">Telefone Fixo: </label>
                     <input className="telFixoInp" onChange={(e) => {
                         setForm({ ...form, telFixo: e.target.value.toString() });
-                    }} placeholder="(99)9999-9999" value={form.telFixo} />
+                    }} placeholder="(99) 9999-9999" value={form.telFixo} />
                 </fieldset>
 
                 <fieldset>
                     <label className="celular required">Celular: </label>
-                    <input className="celularInp" onChange={(e) => {
+                    <input className="celularInp" pattern="^(\d{2})\s\d{4,}-\d{4}$" type="tel"
+                    onChange={(e) => {
                         setForm({ ...form, celular: e.target.value.toString() });
-                    }} placeholder="(99)99999-9999" value={form.celular} required />
+                    }} placeholder="(99) 99999-9999" value={form.celular} required />
                 </fieldset>
 
                 <fieldset>
@@ -217,7 +257,10 @@ const App = () => {
 
                 <fieldset>
                     <label className="cpf required">CPF: </label>
-                    <input className="cpfInput" onChange={(e) => {
+                    <input className="cpfInput" onBlur={(e) => {
+                        buscaCPF(form.cpf);
+                    }}
+                    onChange={(e) => {
                         setForm({ ...form, cpf: e.target.value });
                     }} value={form.cpf} type="number" required />
                 </fieldset>
@@ -260,6 +303,9 @@ const App = () => {
                     <button onClick={() => criarCurriculo()}>Cadastrar</button>
                 </div>
             </div>
+            <footer>
+            <p>Copyright &copy; JobsNET. Made by <a href="https://github.com/gerlaneln" id="sign" target="_blank">gerlaneln</a>.</p>
+            </footer>
         </>
     );
 }

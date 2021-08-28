@@ -30,7 +30,7 @@ module.exports = {
         newCandidato.save((err, saveCandidato) => {
             if (err) {
                 console.log(err);
-                return res.status(500).send('erro no sistema');
+                return res.status(500).send('Erro ao salvar candidato.');
             }
             return res.status(200).send(saveCandidato);
         });
