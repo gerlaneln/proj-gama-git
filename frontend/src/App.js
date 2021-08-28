@@ -1,6 +1,5 @@
 import logo from './jobsNET.svg';
 import './style.css';
-//import './cep.js';
 import { React, useEffect, useState } from 'react';
 import axios from 'axios';
 
@@ -49,24 +48,28 @@ const App = () => {
     }
     
     const buscaCPF = async (cpf) => {
+        
         if(isNum(cpf)){
-            if (cpf.lenght < 11){
-                const back = await axios.get('http://localhost:8080/find', { params: { cpf }});
-                if(back){
+            
+            if (cpf.length === 11){
+                
+                const back = await axios.get('https://gama-git-gerln.herokuapp.com/find', { params: { cpf }});
+                if(back.status === 500){
                     setForm({...form, cpf: ''});
                     alert('CPF já cadastrado');
                     setForm({...form, cpf: ''});
                 }
             }else{
+                
                 setForm({...form, cpf: ''});
                 alert('CPF inválido');
             }
         }else{
+            
             setForm({...form, cpf: ''});
             alert('CPF possui caracteres inválidos');
             setForm({...form, cpf: ''});
         }
-        
         
     }
 
