@@ -26,8 +26,8 @@
     - MongoDB
 
 
- Documentação Swagger disponível em https://gama-git-gerln.herokuapp.com/doc.
- Backend disponível em: https://gama-git-gerln.herokuapp.com/
- Backend enviado por HerokuCLI no cmd.
- Frontend disponível em: https://boring-joliot-e666a5.netlify.app/
- Repositório para deploy do frontend netlify: https://github.com/gerlaneln/frontend
+ - Documentação Swagger disponível em https://gama-git-gerln.herokuapp.com/doc.
+ - Backend disponível em: https://gama-git-gerln.herokuapp.com/
+ - Backend enviado por HerokuCLI no cmd.
+ - Frontend disponível em: https://boring-joliot-e666a5.netlify.app/
+ - Repositório para deploy do frontend netlify: https://github.com/gerlaneln/frontend
