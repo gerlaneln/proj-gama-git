@@ -24,3 +24,4 @@
     - Node.JS
     - React
     - MongoDB
+    Documentação Swagger disponível em /doc.
