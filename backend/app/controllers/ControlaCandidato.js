@@ -1,7 +1,7 @@
 const Candidato = require('../models/Candidato');
 
 module.exports = {
-    async register (req, res) {
+    async register (req, res, next) {
 
         const { cpf, nome, profissao, dataNascimento, estadoCivil, genero, cep, logradouro, num, bairro, cidade, estado, telFixo, celular, email, rg, veiculo, cnh
         } = req.body;

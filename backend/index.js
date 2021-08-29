@@ -6,11 +6,17 @@ const routes = require('./routes');
 const app = express();
 const cors = require('cors');
 
-//senha 6T1M4LHjii2zca46
-
 mongoose.connect('mongodb+srv://admin:6T1M4LHjii2zca46@cluster0.a49dz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
 
-app.use(cors());
+var corsOptions = {
+  "origin": "*",
+  "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+  "preflightContinue": true,
+  "optionsSuccessStatus": 204
+}
+
+app.use(cors(corsOptions));
+
 app.use(express.json());
 app.use('/doc', swaggerUI.serve, swaggerUI.setup(swaggerDocs));
 app.use(routes);
